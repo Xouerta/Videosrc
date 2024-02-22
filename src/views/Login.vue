@@ -1,6 +1,6 @@
 <template>
   <div>
-      <login-top Text="登录bilibili">
+      <login-top Text="登录VideoSrc">
             <div slot="right" style="font-size:3.611vw" @click="$router.push('/register')">用户注册</div>
       </login-top>
 
