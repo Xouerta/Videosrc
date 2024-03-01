@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <VideoManagement />
+    <ConsoleView />
   </div>
 </template>
 
 <script>
-import VideoManagement from './components/VideoManagement.vue';
+import ConsoleView from '../components/console/ConsoleView.vue';
 
 export default {
   name: 'App',
   components: {
-    VideoManagement,
+    ConsoleView,
   },
 };
 </script>

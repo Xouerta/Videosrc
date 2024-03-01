@@ -7,7 +7,7 @@ const userinfo = ()=>import('@/views/userinfo.vue')
 const edit = ()=>import('@/views/Edit.vue')
 const article = ()=>import('@/views/Article.vue')
 const editcategory = ()=>import('@/views/EditCategory.vue')
-const console = () =>import('@views/Console.vue')
+const console = () =>import('@/views/Console.vue')
 Vue.use(VueRouter)
   const routes = [
      {
