@@ -3,6 +3,7 @@
     <h2>视频后台管理系统</h2>
     <div v-for="video in videos" :key="video.id">
       <p>{{ video.title }}</p>
+      <video></video>
       <button @click="deleteVideo(video.id)">删除</button>
       <button @click="approveVideo(video)">通过</button>
     </div>
