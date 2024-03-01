@@ -9,7 +9,7 @@
       <div>
           <img :src="imgUrl" alt="" @click="$router.push('/userinfo')" v-if="imgUrl">
           <img  src="@/assets/default_img.jpg" alt="" @click="$router.push('/login')"  v-else>
-          <div>下载App</div>
+          <div>正在开发</div>
       </div>
   </div>
 </template>
@@ -78,7 +78,7 @@ export default {
         >div{
             margin: 0 2.778vw;
             font-size: 3.611vw;
-            background-color: #fb7299;
+            background-color: #72b7fb;
             padding: 1.389vw 2.778vw;
             text-align: center;
             border-radius: 0.833vw;
