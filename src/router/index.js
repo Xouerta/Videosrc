@@ -7,6 +7,8 @@ const userinfo = ()=>import('@/views/userinfo.vue')
 const edit = ()=>import('@/views/Edit.vue')
 const article = ()=>import('@/views/Article.vue')
 const editcategory = ()=>import('@/views/EditCategory.vue')
+
+const console = () =>import('@views/Console.vue')
 Vue.use(VueRouter)
   const routes = [
      {
@@ -45,7 +47,11 @@ Vue.use(VueRouter)
     {
       path:'/editcategory',
       component:editcategory
-    }
+    },
+      {
+          path: '/console',
+          component:console
+      }
   ]
 
 const router = new VueRouter({
