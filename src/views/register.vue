@@ -25,6 +25,13 @@
         >
         </login-text>
 
+    <login-text label="验证码"
+                placeholder="请输入验证码"
+                type="text"
+                @contentWatch="res => model.verifyword = res"
+    >
+    </login-text>
+
         <login-btn BtnText="注册" @TextClick="AjaxInsert"></login-btn>
   </div>
 </template>
