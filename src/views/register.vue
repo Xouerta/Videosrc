@@ -24,15 +24,22 @@
             @contentWatch="res => model.password = res"
         >
         </login-text>
-
+    <login-text label="邮箱"
+                placeholder="请输邮箱"
+                type="text"
+                v-model="from.email"
+    >
+    </login-text>
     <login-text label="验证码"
                 placeholder="请输入验证码"
                 type="text"
-                @contentWatch="res => model.verifyword = res"
+                v-model="from.code"
     >
     </login-text>
 
         <login-btn BtnText="注册" @TextClick="AjaxInsert"></login-btn>
+        <button type="primary" @click="getCode">获取验证码</button>
+
   </div>
 </template>
 
@@ -43,7 +50,11 @@ import LoginBtn from '@/components/common/LoginBtn.vue'
 export default {
     data() {
         return {
-            model:{}
+            model:{},
+          form:{
+              email:"",
+            code:""
+          }
         }
     },
     components:{
@@ -65,7 +76,56 @@ export default {
             }else{
                 this.$msg.fail('格式不正确,请重新输入!')
             }
-        }
+        },
+        getCode(){
+          axios.get("url",{
+            params:{
+              email:this.form.email
+            }
+          })
+              .then(()=>{
+                this.$message({
+                  message:"send code",
+                  type:"success"
+                });
+              })
+              .catch(()=>{
+                this.message({
+                  message:"request timeout!",
+                  type:"error"
+                })
+              })
+        },
+      submit() {
+        const data = {
+          email: this.email,
+          code: this.code
+        };
+        axios
+            .post("url", data)
+            .then(res => {
+              if ((res.data.code = '')) {
+                this.$message({
+                  message: "验证码错误",
+                  type: "error"
+                });
+                return;
+              } else {
+                this.$router.push({ path: "/Login" });
+                this.$message({
+                  message: "验证通过,注册成功",
+                  type: "success"
+                });
+              }
+            })
+            .catch(() => {
+              this.$message({
+                message: "请求超时，请检查网络连接",
+                type: "error"
+              });
+            });
+      },
+
     }
 }
 </script>

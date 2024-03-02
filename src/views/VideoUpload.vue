@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import VideoUpload from './components/VideoUpload.vue';
+import VideoUpload from '../components/upload/VideoUpload.vue';
 
 export default {
   components: {
