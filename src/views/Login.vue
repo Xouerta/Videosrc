@@ -6,7 +6,7 @@
 
         <login-text label="账号" 
         placeholder="请输入账号"
-         @contentWatch="res => model.username = res"
+         @contentWatch="res => model.email = res"
          style="margin:4.167vw 0"
          >
         </login-text>
@@ -39,8 +39,8 @@ export default {
     },
     methods:{
         async AjaxInsert() {
-            let rulg = /^.{6,16}$/
-            if(rulg.test(this.model.username)&&rulg.test(this.model.password)){
+            let rulg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          if(rulg.test(this.model.email)){
                 const res =  await this.$http.post('/user/login',this.model)
                 this.$msg.fail(res.data.msg)
                 if(res.data.code == 301 || res.data.code == 302){
@@ -54,6 +54,7 @@ export default {
             }else{
                 this.$msg.fail('格式不正确,请重新输入!')
             }
+
         }
     }
 }

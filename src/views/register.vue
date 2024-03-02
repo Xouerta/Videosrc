@@ -26,13 +26,13 @@
     <login-text label="邮箱"
                 placeholder="请输邮箱"
                 type="text"
-                v-model="from.email"
+                v-model="form.email"
     >
     </login-text>
     <login-text label="验证码"
                 placeholder="请输入验证码"
                 type="text"
-                v-model="from.code"
+                v-model="form.code"
     >
     </login-text>
 
@@ -67,7 +67,7 @@ export default {
             let rulg = /^.{6,16}/
             if(rulg.test(this.model.name) && rulg.test(this.model.username)&& rulg.test(this.model.password)){
                 const res =  await this.$http.post('/user/register',this.model)
-                this.$msg.fail(res.data.msg)
+                this.$msg.fail('555555555555')
                 localStorage.setItem('token',res.data.objtoken) 
                 localStorage.setItem('id',res.data.id) 
                 setTimeout(() => {
@@ -84,7 +84,7 @@ export default {
             }
           })
               .then(()=>{
-                this.$message({
+                this.$msg({
                   message:"send code",
                   type:"success"
                 });
@@ -105,21 +105,21 @@ export default {
             .post("url", data)
             .then(res => {
               if ((res.data.code = '')) {
-                this.$message({
+                this.$msg({
                   message: "验证码错误",
                   type: "error"
                 });
                 return;
               } else {
                 this.$router.push({ path: "/Login" });
-                this.$message({
+                this.$msg({
                   message: "验证通过,注册成功",
                   type: "success"
                 });
               }
             })
             .catch(() => {
-              this.$message({
+              this.$msg({
                 message: "请求超时，请检查网络连接",
                 type: "error"
               });
