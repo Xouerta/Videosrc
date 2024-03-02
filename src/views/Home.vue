@@ -3,10 +3,9 @@
     <nav-bar></nav-bar>
     <video-from></video-from>
     <van-card
-        num="1"
         desc="描述信息"
         title="视频标题"
-        thumb="../assets/1.png"
+        thumb="@/assets/1.png"
     >
       <template #tags>
         <van-tag plain type="primary">视频</van-tag>
@@ -18,11 +17,10 @@
       </template>
     </van-card>
     <van-card
-        num="1"
         view="200"
         desc="描述信息"
         title="图文标题"
-        thumb="../assets/2.png"
+        thumb="@/assets/2.png"
     >
       <template #tags>
         <van-tag plain type="primary">视频</van-tag>
@@ -33,6 +31,43 @@
         <van-button size="mini">播放</van-button>
       </template>
     </van-card>
+    <van-card
+        view="200"
+        desc="描述信息"
+        title="视频标题"
+        thumb="@/assets/2.png"
+    >
+      <template #tags>
+        <van-tag plain type="primary">视频</van-tag>
+        <van-tag plain type="primary">图文</van-tag>
+      </template>
+      <template #footer>
+        <van-button size="mini">喜欢</van-button>
+        <van-button size="mini">播放</van-button>
+      </template>
+    </van-card>
+    <van-card
+        view="200"
+        desc="描述信息"
+        title="图文标题"
+        thumb="@/assets/2.png"
+    >
+      <template #tags>
+        <van-tag plain type="primary">视频</van-tag>
+        <van-tag plain type="primary">图文</van-tag>
+      </template>
+      <template #footer>
+        <van-button size="mini">喜欢</van-button>
+        <van-button size="mini">播放</van-button>
+      </template>
+    </van-card>
+    <van-pagination
+        v-model="currentPage"
+        :total-items="125"
+        :show-page-size="6"
+        force-ellipses
+    />
+
 
     <div class="categorytab">
       <div class="category-ico" @click="$router.push('/editcategory')"><van-icon name="setting-o" /></div>
