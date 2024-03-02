@@ -1,74 +1,63 @@
 <template>
-  <div class="p-grid p-justify-center p-align-center">
-    <div class="p-col-12 p-md-6">
-      <div class="p-d-flex p-jc-center">
-        <div class="upload-area p-d-flex p-jc-center p-ai-center" @dragover.prevent @drop="handleDrop">
-          <i class="pi pi-upload"></i>
-          <span>拖拽视频到此处上传</span>
+  <div class="video-upload">
+    <van-uploader
+        :file-list="fileList"
+        accept="video/*"
+        multiple
+        drag
+        :before-read="beforeRead"
+        :after-read="afterRead"
+    >
+      <template #upload="props">
+        <div class="upload-demo">
+          <van-icon class="icon" name="photograph" />
+          <span>将视频文件拖到此处，或<em>点击上传</em></span>
         </div>
-      </div>
-      <div class="p-d-flex p-jc-center p-mt-2">
-        <input type="file" ref="fileInput" @change="handleFileInput" style="display: none">
-        <Button type="button" label="选择视频文件" icon="pi pi-folder-open" class="p-button-raised p-button-info" @click="openFileInput" />
-      </div>
-      <div v-if="video" class="p-d-flex p-jc-center p-mt-2">
-        <Button type="button" label="上传视频" icon="pi pi-upload" class="p-button-raised p-button-success" @click="uploadVideo" />
-      </div>
-    </div>
+      </template>
+    </van-uploader>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import { Button } from 'primevue/button';
-import 'primevue/resources/themes/saga-blue/theme.css';
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
-
 export default {
-  components: {
-    Button
-  },
   data() {
     return {
-      video: null
+      fileList: []
     };
   },
   methods: {
-    openFileInput() {
-      this.$refs.fileInput.click();
+    beforeRead(file) {
+      // 可以在这里添加一些上传文件的前置处理逻辑，比如文件大小限制等
+      console.log('上传文件:', file);
+      return true; // 返回 true 表示允许上传，返回 false 表示不允许上传
     },
-    handleFileInput(event) {
-      const file = event.target.files[0];
-      this.video = file;
-    },
-    handleDrop(event) {
-      event.preventDefault();
-      const file = event.dataTransfer.files[0];
-      this.video = file;
-    },
-    uploadVideo() {
-      // 处理视频上传逻辑，可以发送视频文件到后端等
-      console.log('上传视频:', this.video);
-      // 上传完成后，清空视频
-      this.video = null;
+    afterRead(file) {
+      // 文件读取完成后的回调函数
+      console.log('文件读取完成:', file);
     }
   }
 };
 </script>
 
-<style scoped>
-.upload-area {
-  border: 2px dashed #ccc;
-  padding: 20px;
-  cursor: pointer;
+<style>
+.video-upload {
   width: 100%;
-  height: 200px;
-  text-align: center;
+  height: 100%;
 }
 
-.upload-area i {
-  font-size: 3rem;
+.upload-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  border: 1px dashed #e5e5e5;
+  background-color: #fafafa;
+  color: #999;
+}
+
+.upload-demo .icon {
+  font-size: 48px;
   margin-bottom: 10px;
 }
 </style>

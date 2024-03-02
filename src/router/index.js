@@ -8,6 +8,7 @@ const edit = ()=>import('@/views/Edit.vue')
 const article = ()=>import('@/views/Article.vue')
 const editcategory = ()=>import('@/views/EditCategory.vue')
 const console = () =>import('@/views/Console.vue')
+const VideoUpload = () => import('@/views/VideoUpload.vue')
 Vue.use(VueRouter)
   const routes = [
      {
@@ -50,7 +51,12 @@ Vue.use(VueRouter)
       {
           path: '/console',
           component:console
+      },
+      {
+          path:'/upload',
+          component:VideoUpload
       }
+
   ]
 
 const router = new VueRouter({
