@@ -20,7 +20,6 @@
         <login-text label="密码" 
             placeholder="请输入密码" 
             type="password"
-
             @contentWatch="res => model.password = res"
         >
         </login-text>
@@ -38,7 +37,7 @@
     </login-text>
 
         <login-btn BtnText="注册" @TextClick="AjaxInsert"></login-btn>
-        <button type="primary" @click="getCode">获取验证码</button>
+        <button type="submit" @click="getCode">获取验证码</button>
 
   </div>
 </template>
@@ -47,13 +46,14 @@
 import LoginTop from '@/components/common/LoginTop.vue'
 import LoginText from '@/components/common/LoginText.vue'
 import LoginBtn from '@/components/common/LoginBtn.vue'
+import axios from "axios";
 export default {
     data() {
         return {
             model:{},
           form:{
               email:"",
-            code:""
+              code:""
           }
         }
     },
